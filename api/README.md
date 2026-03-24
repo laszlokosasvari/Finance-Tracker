@@ -47,13 +47,13 @@ Once the app is running, you can explore and test the endpoints directly via Swa
 
 ### Key Endpoints
 
-| Method | Endpoint | Description |
-| :--- | :--- | :--- |
-| `GET` | `/api/transactions` | Get all transactions (Paginated) |
-| `POST` | `/api/transactions` | Create a new transaction |
+| Method | Endpoint                    | Description |
+| :--- |:----------------------------| :--- |
+| `GET` | `/api/transactions`         | Get all transactions (Paginated) |
+| `POST` | `/api/transactions`         | Create a new transaction |
 | `GET` | `/api/transactions/between` | Filter by date range |
 | `GET` | `/api/transactions/balance` | Get current total balance |
-| `DELETE` | `/api/transactions/{id}` | Remove a transaction |
+| `DELETE` | `/api/transactions/`        | Remove a transaction |
 
 ## 🧪 Testing
 

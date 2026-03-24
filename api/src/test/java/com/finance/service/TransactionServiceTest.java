@@ -2,6 +2,7 @@ package com.finance.service;
 
 import com.finance.dto.TransactionRequest;
 import com.finance.dto.TransactionResponse;
+import com.finance.exception.InvalidTransactionException;
 import com.finance.model.Category;
 import com.finance.model.Transaction;
 import com.finance.model.TransactionType;
@@ -23,8 +24,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -177,5 +177,18 @@ public class TransactionServiceTest {
         verify(transactionRepository).existsById(id);
         verify(transactionRepository, times(1)).deleteById(id);
 
+    }
+
+    @Test
+    void shouldThrowExceptionWhenDeletingNonExistentTransaction() {
+        // Arrange
+        UUID id = UUID.randomUUID();
+        when(transactionRepository.existsById(id)).thenReturn(false);
+
+        // Act & Assert
+        assertThrows(InvalidTransactionException.class,
+                () -> transactionService.deleteTransaction(id));
+
+        verify(transactionRepository, never()).deleteById(any());
     }
 }
