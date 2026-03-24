@@ -1,5 +1,6 @@
 package com.finance.ui;
 
+import com.finance.exception.InvalidTransactionException;
 import com.finance.model.Category;
 import com.finance.model.Transaction;
 import com.finance.model.TransactionType;
@@ -33,7 +34,9 @@ public class ConsoleUI {
         System.out.println("4 → Delete transaction");
         System.out.println("5 → Check transactions between dates");
         System.out.println("6 → Check TOP 3 Expense");
-        System.out.println("7 → Exit");
+        System.out.println("7 → Save Transactions");
+        System.out.println("8 → Read Transactions");
+        System.out.println("9 → Exit");
 
         return this.scanner.nextShort();
     }
@@ -41,7 +44,7 @@ public class ConsoleUI {
     public void start() {
         short choice = callMenu();
 
-        while(choice != 7) {
+        while(choice != 9) {
             switch (choice) {
                 case 1:
                     createTransaction();
@@ -60,6 +63,12 @@ public class ConsoleUI {
                     break;
                 case 6:
                     topThreeCall();
+                    break;
+                case 7:
+                    callSave();
+                    break;
+                case 8:
+                    callRead();
                     break;
             }
             choice = callMenu();
@@ -90,8 +99,12 @@ public class ConsoleUI {
         TransactionType type = TransactionType.getType(tmpType);
         Category category = Category.getCategory(tmpCategory);
 
-        Transaction transaction = new Transaction(description, amount, type, category, date);
-        this.transactionService.addTransaction(transaction);
+        try {
+            Transaction transaction = new Transaction(description, amount, type, category, date);
+            this.transactionService.addTransaction(transaction);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
 
         System.out.println("Transaction added!");
     }
@@ -109,8 +122,12 @@ public class ConsoleUI {
         this.scanner.nextLine();
         String id = this.scanner.nextLine();
 
-        transactionService.deleteTransaction(id);
-        System.out.println("Transaction removed!");
+        try {
+            transactionService.deleteTransaction(id);
+            System.out.println("Transaction removed!");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     public void callDateRange() {
@@ -126,5 +143,13 @@ public class ConsoleUI {
     public void topThreeCall() {
         System.out.println("Top 3 Expenses: ");
         System.out.println(this.transactionService.topThreeExpenses());
+    }
+
+    public void callSave() {
+        this.transactionService.writeToCSV();
+    }
+
+    public void callRead() {
+        this.transactionService.readFromCSV();
     }
 }

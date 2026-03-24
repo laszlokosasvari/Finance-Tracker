@@ -1,6 +1,8 @@
 package com.finance.model;
 
+import java.lang.reflect.Field;
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.UUID;
 
 /**
@@ -21,6 +23,15 @@ public class Transaction {
     private LocalDate date;
 
     public Transaction(String description, double amount, TransactionType type, Category category, LocalDate date) {
+        this.id = UUID.randomUUID().toString();
+        this.description = description;
+        this.amount = amount;
+        this.type = type;
+        this.category = category;
+        this.date = date;
+    }
+
+    public Transaction(String id, String description, double amount, TransactionType type, Category category, LocalDate date) {
         this.id = UUID.randomUUID().toString();
         this.description = description;
         this.amount = amount;
@@ -88,4 +99,11 @@ public class Transaction {
                 ", date=" + date +
                 '}';
     }
+
+    public String createCSVLine() {
+        String csvLine = String.join(",", this.id, this.description, this.amount.toString(), this.type.name(), this.category.name(), this.date.toString());
+        System.out.println(csvLine);
+        return csvLine;
+    }
+
 }
