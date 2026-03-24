@@ -13,19 +13,9 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-/**
- *
- * addTransaction — takes a Transaction and adds it to the list
- * getAllTransactions — returns the full list
- * deleteTransaction — takes an id as a String and removes the matching transaction from the list
- * getTotalIncome — loops through the list and sums up all INCOME transactions
- * getTotalExpenses — loops through the list and sums up all EXPENSE transactions
- * getBalance — returns the difference between total income and total expenses
- */
-
 public class TransactionService {
 
-    private FileHandler fileHandler;
+    private final FileHandler fileHandler;
 
     private List<Transaction> transactions;
 

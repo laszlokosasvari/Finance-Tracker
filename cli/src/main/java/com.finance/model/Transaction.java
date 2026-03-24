@@ -1,18 +1,7 @@
 package com.finance.model;
 
-import java.lang.reflect.Field;
 import java.time.LocalDate;
-import java.util.Arrays;
 import java.util.UUID;
-
-/**
- * id — String
- * description — String
- * amount — double
- * type — TransactionType
- * category — Category
- * date — LocalDate
- */
 
 public class Transaction {
     private String id;

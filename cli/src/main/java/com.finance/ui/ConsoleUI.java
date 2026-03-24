@@ -1,6 +1,5 @@
 package com.finance.ui;
 
-import com.finance.exception.InvalidTransactionException;
 import com.finance.model.Category;
 import com.finance.model.Transaction;
 import com.finance.model.TransactionType;
@@ -18,8 +17,8 @@ import java.util.Scanner;
  */
 
 public class ConsoleUI {
-    private TransactionService transactionService;
-    private Scanner scanner;
+    private final TransactionService transactionService;
+    private final Scanner scanner;
 
     public ConsoleUI(TransactionService transactionService) {
         this.transactionService = transactionService;
