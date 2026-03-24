@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DiffGenerationConfig">
+    <option name="sourceModelValue" value="api.main:api.main" />
+    <option name="targetDbValue" value="fe0a973d-18cc-4cf5-99b6-26d56b0b91be__finance_tracker_public" />
+  </component>
+</project>

@@ -1,0 +1,18 @@
+# Example Configuration - Copy to application.properties and update values
+spring.datasource.url=jdbc:postgresql://localhost:5432/your_db_name
+spring.datasource.username=your_user
+spring.datasource.password=your_password
+spring.datasource.driver-class-name=org.postgresql.Driver
+
+# JPA & Hibernate
+spring.jpa.hibernate.ddl-auto=validate
+spring.jpa.show-sql=true
+logging.level.org.hibernate.orm.queries=DEBUG
+
+# Flyway
+spring.flyway.enabled=true
+spring.flyway.locations=classpath:db/migration
+
+# Error Handling
+server.error.include-stacktrace=always
+server.error.include-message=always
