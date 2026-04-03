@@ -1,0 +1,4 @@
+ALTER TABLE transaction_user
+ADD COLUMN failed_attempts INT DEFAULT 0,
+ADD COLUMN account_locked BOOLEAN DEFAULT FALSE,
+ADD COLUMN lock_time TIMESTAMP WITH TIME ZONE;

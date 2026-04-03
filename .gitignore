@@ -41,3 +41,14 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+
+# Exclude .env files in the root OR any subdirectory
+**/.env
+**/.env.local
+**/.env.*
+
+# Exclude application.properties or yaml files in any directory
+**/application.properties
+**/application-*.properties
+**/application.yml
+**/application.yaml
